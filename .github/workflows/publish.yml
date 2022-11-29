@@ -1,0 +1,40 @@
+# Publishes the mod to Modrinth
+# and GitHub Releases.
+
+name: Publish Mod
+on:
+  release:
+    types: [ published ]
+
+jobs:
+  publishMod:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Validate Gradle Wrapper
+        uses: gradle/wrapper-validation-action@v1.0.4
+
+      - name: Gradle Cache
+        uses: burrunan/gradle-cache-action@v1
+
+      - name: Setup JDK 17
+        uses: actions/setup-java@v3.4.1
+        with:
+          java-version: 17
+          distribution: 'temurin'
+
+      - name: Build Mod
+        run: ./gradlew clean build
+
+      - name: Publish Mod
+        uses: Kir-Antipov/mc-publish@v3.1
+        with:
+          changelog-file: CHANGELOG.md
+
+          # You need to set this in your projects secrets.
+          modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
+
+          # You don't need to set this in your projects secrets.
+          github-token: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "${id}",
+  "version": "${version}",
+
+  "name": "${name}",
+  "description": "${description}",
+  "authors": [
+    "Me!",
+    "You!"
+  ],
+  "contact": {
+    "sources": "${sources}"
+  },
+
+  "license": "${license}",
+  "icon": "assets/${id}/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "${group}.entrypoint.${pascalName}Main"
+    ]
+  },
+  "mixins": [
+    "${id}.mixins.json"
+  ],
+  "depends": {
+    "fabric-api": "*"
+  },
+  "custom": {
+    "modmanager": {
+      "modrinth": "${modrinthProject}"
+    }
+  }
+}

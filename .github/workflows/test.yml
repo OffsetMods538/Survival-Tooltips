@@ -1,0 +1,37 @@
+# Tests if the mod can be launched in a minecraft server.
+
+name: Test
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  buildAndTest:
+    strategy:
+      matrix:
+        minecraftVersion:
+          - 1.19
+          - 1.19.1
+
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Validate Gradle Wrapper
+        uses: gradle/wrapper-validation-action@v1.0.4
+
+      - name: Gradle Cache
+        uses: burrunan/gradle-cache-action@v1
+
+      - name: Setup JDK 17
+        uses: actions/setup-java@v3.4.1
+        with:
+          java-version: 17
+          distribution: 'temurin'
+
+      - name: Run tests for ${{matrix.minecraftVersion}}
+        uses: Geometrically/fabric-test-runner@v1
+        with:
+          minecraftVersion: ${{matrix.minecraftVersion}}
+          runServerTest: true # Set to false if client only mod
