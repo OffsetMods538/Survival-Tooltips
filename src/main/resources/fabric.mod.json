@@ -18,6 +18,9 @@
   "entrypoints": {
     "main": [
       "${group}.entrypoint.${pascalName}Main"
+    ],
+    "preLaunch": [
+      "com.llamalad7.mixinextras.MixinExtrasBootstrap::init"
     ]
   },
   "mixins": [
