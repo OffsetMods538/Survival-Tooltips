@@ -4,6 +4,7 @@
   "package": "io.github.offsetmonkey538.survivaltooltips.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "ItemStackMixin"
   ],
   "injectors": {
     "defaultRequire": 1
