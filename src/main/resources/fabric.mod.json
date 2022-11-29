@@ -6,8 +6,7 @@
   "name": "${name}",
   "description": "${description}",
   "authors": [
-    "Me!",
-    "You!"
+    "OffsetMonkey538"
   ],
   "contact": {
     "sources": "${sources}"
