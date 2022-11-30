@@ -10,6 +10,7 @@ jobs:
     strategy:
       matrix:
         minecraftVersion:
+          - 1.18
           - 1.19
           - 1.19.1
           - 1.19.2
@@ -35,4 +36,4 @@ jobs:
         uses: Geometrically/fabric-test-runner@v1
         with:
           minecraftVersion: ${{matrix.minecraftVersion}}
-          runServerTest: true # Set to false if client only mod
+          runServerTest: false # Set to false if client only mod
