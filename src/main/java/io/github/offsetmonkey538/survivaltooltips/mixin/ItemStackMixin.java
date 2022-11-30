@@ -4,6 +4,7 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemGroups;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -43,8 +44,9 @@ public abstract class ItemStackMixin {
             locals = LocalCapture.CAPTURE_FAILHARD
     )
     public void survival_tooltips$addCreativeTabToTooltip(@Nullable PlayerEntity player, TooltipContext context, CallbackInfoReturnable<List<Text>> cir, List<Text> list) {
-        ItemGroup group = getItem().getGroup();
-        if (group == null) return;
-        list.add(group.getDisplayName().copy().formatted(Formatting.BLUE));
+        for (ItemGroup group : ItemGroups.getGroupsToDisplay()) {
+            if (!group.contains(((ItemStack) (Object)this))) continue;
+            list.add(group.getDisplayName().copy().formatted(Formatting.BLUE));
+        }
     }
 }
