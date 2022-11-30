@@ -41,7 +41,7 @@ public abstract class ItemStackMixin {
     )
     public void survival_tooltips$addCreativeTabToTooltip(@Nullable PlayerEntity player, TooltipContext context, CallbackInfoReturnable<List<Text>> cir, List<Text> list) {
         for (ItemGroup group : ItemGroups.getGroupsToDisplay()) {
-            if (group.getType() == ItemGroup.Type.SEARCH || !group.contains(((ItemStack) (Object)this))) continue;
+            if (group.getType() == ItemGroup.Type.SEARCH || !group.contains((ItemStack)(Object)this)) continue;
             list.add(group.getDisplayName().copy().formatted(Formatting.BLUE));
         }
     }
