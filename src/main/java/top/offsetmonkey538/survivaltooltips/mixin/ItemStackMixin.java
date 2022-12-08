@@ -1,4 +1,4 @@
-package io.github.offsetmonkey538.survivaltooltips.mixin;
+package top.offsetmonkey538.survivaltooltips.mixin;
 
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;

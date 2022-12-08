@@ -1,4 +1,4 @@
-package io.github.offsetmonkey538.survivaltooltips.mixin;
+package top.offsetmonkey538.survivaltooltips.mixin;
 
 import com.llamalad7.mixinextras.injector.WrapWithCondition;
 import net.minecraft.client.gui.screen.ingame.CreativeInventoryScreen;
