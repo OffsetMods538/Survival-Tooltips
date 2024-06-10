@@ -3,6 +3,7 @@ import dex.plugins.outlet.v2.util.ReleaseType
 plugins {
 	id 'fabric-loom' version '1.6-SNAPSHOT'
 	id 'io.github.dexman545.outlet' version '1.6.1'
+	id 'com.modrinth.minotaur' version '2.+'
 }
 
 sourceCompatibility = JavaVersion.VERSION_17
@@ -83,3 +84,27 @@ static def pascalCase(String text) {
 
 	return builder.toString()
 }
+
+modrinth {
+	token = System.getenv("MODRINTH_TOKEN")
+	projectId = "survival-tooltips"
+	def customVersionName = System.getenv("VERSION_NAME")
+	if (customVersionName != null) versionName = customVersionName
+	versionNumber = "${project.version}"
+	versionType = "beta"
+	uploadFile = remapJar.archiveFile
+	//additionalFiles = [sourcesJar.archiveFile, javadocJar.archiveFile]
+	additionalFiles = [sourcesJar.archiveFile]
+	gameVersions = outlet.mcVersions()
+	syncBodyFrom = rootProject.file("README.md").text
+	def changelogFile = rootProject.file("CHANGELOG.md")
+	if (changelogFile.exists()) {
+		changelog = changelogFile.text
+	}
+
+	dependencies {
+		// TODO: if monkeylib is required: required.project "monkeylib538"
+	}
+}
+
+tasks.modrinth.dependsOn(tasks.modrinthSyncBody)
