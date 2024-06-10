@@ -1,32 +1,32 @@
 {
   "schemaVersion": 1,
-  "id": "${id}",
-  "version": "${version}",
+  "id": "survival-tooltips",
+  "version": "${modVersion}",
 
-  "name": "${name}",
-  "description": "${description}",
+  "name": "Survival Tooltips",
+  "description": "Shows the 'Creative Tab' tooltip in survival",
   "authors": [
     "OffsetMonkey538"
   ],
   "contact": {
-    "sources": "${sources}"
+    "sources": "https://github.com/OffsetMods538/Survival-Tooltips"
   },
 
-  "license": "${license}",
-  "icon": "assets/${id}/icon.png",
+  "license": "MIT",
+  "icon": "assets/survival-tooltips/icon.png",
   "environment": "*",
   "entrypoints": {
 
   },
   "mixins": [
-    "${id}.mixins.json"
+    "survival-tooltips.mixins.json"
   ],
   "depends": {
-    "minecraft": "~1.20"
+    "minecraft": "${supportedMinecraftVersions}"
   },
   "custom": {
     "modmanager": {
-      "modrinth": "${modrinthProject}"
+      "modrinth": "survival-tooltips"
     }
   }
 }
