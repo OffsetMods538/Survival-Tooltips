@@ -38,6 +38,11 @@ public abstract class ItemStackMixin {
             )
     )
     public void survival_tooltips$addCreativeTabToTooltip(CallbackInfoReturnable<List<Text>> cir, @Local List<Text> list, @Local(argsOnly = true) @Nullable PlayerEntity player) {
+        final MinecraftClient client = MinecraftClient.getInstance();
+        if (client == null) return;
+        if (!(player instanceof ClientPlayerEntity clientPlayer)) return;
+
+        ItemGroups.updateDisplayContext(clientPlayer.networkHandler.getEnabledFeatures(), client.options.getOperatorItemsTab().getValue(), clientPlayer.getRegistryManager());
         for (ItemGroup group : ItemGroups.getGroups()) {
             //noinspection ConstantValue
             if (group.getType() == ItemGroup.Type.SEARCH || !group.contains((ItemStack)(Object)this)) continue;
