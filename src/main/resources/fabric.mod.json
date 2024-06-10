@@ -16,9 +16,7 @@
   "icon": "assets/${id}/icon.png",
   "environment": "*",
   "entrypoints": {
-    "preLaunch": [
-      "com.llamalad7.mixinextras.MixinExtrasBootstrap::init"
-    ]
+
   },
   "mixins": [
     "${id}.mixins.json"
