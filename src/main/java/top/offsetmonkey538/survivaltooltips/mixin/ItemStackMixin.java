@@ -1,6 +1,6 @@
 package top.offsetmonkey538.survivaltooltips.mixin;
 
-import net.minecraft.client.item.TooltipContext;
+import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemGroups;
@@ -13,7 +13,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Slice;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 import java.util.List;
 
@@ -30,17 +29,17 @@ public abstract class ItemStackMixin {
             slice = @Slice(
                     from = @At(
                             value = "INVOKE",
-                            target = "Lnet/minecraft/item/ItemStack;hasCustomName()Z"
+                            target = "Lcom/google/common/collect/Lists;newArrayList()Ljava/util/ArrayList;"
                     ),
                     to = @At(
                             value = "INVOKE",
                             target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"
                     )
-            ),
-            locals = LocalCapture.CAPTURE_FAILHARD
+            )
     )
-    public void survival_tooltips$addCreativeTabToTooltip(@Nullable PlayerEntity player, TooltipContext context, CallbackInfoReturnable<List<Text>> cir, List<Text> list) {
-        for (ItemGroup group : ItemGroups.getGroupsToDisplay()) {
+    public void survival_tooltips$addCreativeTabToTooltip(CallbackInfoReturnable<List<Text>> cir, @Local List<Text> list, @Local(argsOnly = true) @Nullable PlayerEntity player) {
+        for (ItemGroup group : ItemGroups.getGroups()) {
+            //noinspection ConstantValue
             if (group.getType() == ItemGroup.Type.SEARCH || !group.contains((ItemStack)(Object)this)) continue;
             list.add(group.getDisplayName().copy().formatted(Formatting.BLUE));
         }
