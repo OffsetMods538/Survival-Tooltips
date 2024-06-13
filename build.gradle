@@ -85,7 +85,7 @@ modrinth {
 	}
 
 	dependencies {
-		// TODO: if monkeylib is required: required.project "monkeylib538"
+
 	}
 }
 

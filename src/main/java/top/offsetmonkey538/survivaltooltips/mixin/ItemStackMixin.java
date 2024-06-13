@@ -58,7 +58,7 @@ public abstract class ItemStackMixin {
         if (client == null) return;
         if (!(player instanceof ClientPlayerEntity clientPlayer)) return;
 
-        ItemGroups.updateDisplayContext(clientPlayer.networkHandler.getEnabledFeatures(), client.options.getOperatorItemsTab().getValue(), clientPlayer.getRegistryManager());
+        ItemGroups.updateDisplayContext(clientPlayer.networkHandler.getEnabledFeatures(), client.options.getOperatorItemsTab().getValue(), clientPlayer.getWorld().getRegistryManager());
         for (ItemGroup group : ItemGroups.getGroups()) {
             //noinspection ConstantValue
             if (group.getType() == ItemGroup.Type.SEARCH || !group.contains((ItemStack)(Object)this)) continue;
